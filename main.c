@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <conio.h>
 #include "header.h"
 
 
@@ -19,6 +20,7 @@ int dos_o_cuatro() {
         return 2;
     }
 }
+
 int determinar_pos(int dimension) {
     int pos = rand() % dimension;
     return pos;
@@ -32,36 +34,50 @@ int** crear_tablero(int dimension) {
 return Tablero;  
 }
 
-void inicializar_tablero(int** Tablero, int dimension){
-for (int i = 0; i < dimension; i++) {
-        for (int j = 0; j < dimension; j++) {
-            Tablero[i][j] = 0;
-}}
-
-
-}
-
-
-void colocar_num(int** Tablero, int dimension){
-    int fila = determinar_pos(dimension);
-    int columna = determinar_pos(dimension);
-    while (Tablero[fila][columna] != 0) {
-        fila = determinar_pos(dimension);
-        columna = determinar_pos(dimension);
+void inicializar_tablero(InstanciaTablero instancia) {
+for (int i = 0; i < instancia.dimension; i++) {
+        for (int j = 0; j < instancia.dimension; j++) {
+            instancia.Tablero[i][j] = 0;
+        }
     }
-    Tablero[fila][columna] = dos_o_cuatro();
 }
 
+void colocar_num(InstanciaTablero instancia) {
+    int fila = determinar_pos(instancia.dimension);
+    int columna = determinar_pos(instancia.dimension);
+    while (instancia.Tablero[fila][columna] != 0) {
+        fila = determinar_pos(instancia.dimension);
+        columna = determinar_pos(instancia.dimension);
+    }
+    instancia.Tablero[fila][columna] = dos_o_cuatro();
+}
 
-void imprimir_tablero(int** Tablero, int dimension) {
-    for (int i = 0; i < dimension; i++) {
-        for (int j = 0; j < dimension; j++) 
-            printf("\t%d\t", Tablero[i][j]);
+void imprimir_tablero(InstanciaTablero instancia) {
+    for (int i = 0; i < instancia.dimension; i++) {
+        for (int j = 0; j < instancia.dimension; j++) 
+            printf("\t%d\t", instancia.Tablero[i][j]);
 
     printf("\n");
-}
+    }
 }
 
+void push(UndoStack* stack, InstanciaTablero instancia){
+    Nodo* nuevoNodo = (Nodo*)malloc(sizeof(Nodo));
+    nuevoNodo->instancia = instancia;
+    nuevoNodo->siguiente = stack->cima;
+    stack->cima = nuevoNodo;
+}
+
+InstanciaTablero pop(UndoStack* stack) {
+    if (stack->cima == NULL) {;
+        exit(EXIT_FAILURE);
+    }
+    Nodo* nodoEliminado = stack->cima;
+    InstanciaTablero instancia = nodoEliminado->instancia;
+    stack->cima = nodoEliminado->siguiente;
+    free(nodoEliminado);
+    return instancia;
+}
 
 int main(int argc, char *argv[]) {
     srand(time(NULL));
@@ -71,10 +87,16 @@ int main(int argc, char *argv[]) {
      else 
         dimension =  atoi(argv[1]);
     
-    int** Tablero = crear_tablero(dimension);
-    inicializar_tablero(Tablero, dimension);
-    colocar_num(Tablero, dimension);
-    colocar_num(Tablero, dimension);
-    imprimir_tablero(Tablero, dimension);
+    InstanciaTablero Instancia;
+    Instancia.dimension = dimension;
+    Instancia.Tablero = crear_tablero(dimension);
+    inicializar_tablero(Instancia);
+    colocar_num(Instancia);
+    colocar_num(Instancia);
+    int juegoTerminado = 0;
+    while (!juegoTerminado) {
+    imprimir_tablero(Instancia);
+    printf
     return 0;
+}
 }
