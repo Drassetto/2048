@@ -2,7 +2,7 @@
 #include <conio.h>
 #include <stdio.h>
 #include <stdlib.h>
-InstanciaTablero deslizar_izquierda(InstanciaTablero instancia) {
+void deslizar_izquierda(InstanciaTablero instancia) {
 for (int i = 0; i < instancia.dimension; i++) {
         int pos = 0; 
         for (int j = 0; j < instancia.dimension; j++) {
@@ -17,9 +17,8 @@ for (int i = 0; i < instancia.dimension; i++) {
             }
         }
     }
-    return instancia;
 }
-InstanciaTablero compactar_horiz(InstanciaTablero instancia) {
+void compactar_horiz(InstanciaTablero instancia) {
 for (int i = 0; i < instancia.dimension; i++) {
        
         for (int j = 0; j < instancia.dimension - 1; j++) {
@@ -31,18 +30,16 @@ for (int i = 0; i < instancia.dimension; i++) {
                 instancia.Tablero[i][j - 1] = 0;
         }
     }
-    return instancia;
 }
-InstanciaTablero mover_izquierda(InstanciaTablero instancia) {
+void mover_izquierda(InstanciaTablero instancia) {
     deslizar_izquierda(instancia);
     compactar_izquierda(instancia);
     deslizar_izquierda(instancia);
-    return instancia;
 }
 
 
 
-InstanciaTablero deslizar_derecha(InstanciaTablero instancia) {
+void deslizar_derecha(InstanciaTablero instancia) {
 for (int i = 0; i < instancia.dimension; i++) {
         int pos = instancia.dimension - 1; 
         for (int j = instancia.dimension - 1; j >= 0; j--) {
@@ -57,17 +54,15 @@ for (int i = 0; i < instancia.dimension; i++) {
             }
         }
     }
-    return instancia;
 }
 
-InstanciaTablero mover_derecha(InstanciaTablero instancia) {
+void mover_derecha(InstanciaTablero instancia) {
     deslizar_derecha(instancia);
     compactar_derecha(instancia);
     deslizar_derecha(instancia);
-    return instancia;
 }
 
-InstanciaTablero deslizar_arriba(InstanciaTablero instancia) {
+void deslizar_arriba(InstanciaTablero instancia) {
 for (int j = 0; j < instancia.dimension; j++) {
         int pos = 0; 
         for (int i = 0; i < instancia.dimension; i++) {
@@ -82,9 +77,8 @@ for (int j = 0; j < instancia.dimension; j++) {
             }
         }
     }
-    return instancia;
 }
-InstanciaTablero compactar_vertical(InstanciaTablero instancia) {
+void compactar_vertical(InstanciaTablero instancia) {
 for (int j = 0; j < instancia.dimension; j++) {
        
         for (int i = 0; i < instancia.dimension - 1; i++) {
@@ -96,16 +90,14 @@ for (int j = 0; j < instancia.dimension; j++) {
                         instancia.Tablero[i - 1][j] = 0;
                 }
         }
-    return instancia;
 }
-InstanciaTablero mover_arriba(InstanciaTablero instancia) {
+void mover_arriba(InstanciaTablero instancia) {
     deslizar_arriba(instancia);
     compactar_arriba(instancia);
     deslizar_arriba(instancia);
-    return instancia;
 }
 
-InstanciaTablero deslizar_abajo(InstanciaTablero instancia) {
+void deslizar_abajo(InstanciaTablero instancia) {
 for (int j = 0; j < instancia.dimension; j++) {
         int pos = instancia.dimension - 1; 
         for (int i = instancia.dimension - 1; i >= 0; i--) {
@@ -120,17 +112,15 @@ for (int j = 0; j < instancia.dimension; j++) {
             }
         }
     }
-    return instancia;
 }
 
-InstanciaTablero mover_abajo(InstanciaTablero instancia) {
+void mover_abajo(InstanciaTablero instancia) {
     deslizar_abajo(instancia);
     compactar_abajo(instancia);
     deslizar_abajo(instancia);
-    return instancia;
 }
 
-InstanciaTablero mover(InstanciaTablero instancia) {
+void mover(InstanciaTablero instancia) {
     int direccion = getch();
     if (direccion == 224) {
         direccion = getch();
@@ -138,21 +128,19 @@ InstanciaTablero mover(InstanciaTablero instancia) {
     switch (direccion) {
         case 119: 
         case FLECHA_ARRIBA:
-            return mover_arriba(instancia);
-        break;
+                mover_arriba(instancia);
+                break;
         case 97:
         case FLECHA_IZQUIERDA:
-            return mover_izquierda(instancia);
-            break;
+                mover_izquierda(instancia);
+                break;
         case 115:
         case FLECHA_ABAJO:
-            return mover_abajo(instancia);
-         break;
+                mover_abajo(instancia);
+                break;
         case 100:
         case FLECHA_DERECHA:
-            return mover_derecha(instancia);
-            break;
-        default:
-            return instancia;
+                mover_derecha(instancia);
+                break;
     }
 }
