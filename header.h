@@ -30,16 +30,16 @@ void liberar_stack(UndoStack* stack);
 #define FLECHA_ABAJO 80
 #define FLECHA_IZQUIERDA 75
 #define FLECHA_DERECHA 77
-InstanciaTablero deslizar_izquierda(InstanciaTablero instancia);
-InstanciaTablero compactar_horiz(InstanciaTablero instancia);
-InstanciaTablero mover_izquierda(InstanciaTablero instancia);
+void deslizar_izquierda(InstanciaTablero instancia);
+void compactar_horiz(InstanciaTablero instancia);
+void mover_izquierda(InstanciaTablero instancia);
 
-InstanciaTablero deslizar_derecha(InstanciaTablero instancia);
-InstanciaTablero mover_derecha(InstanciaTablero instancia);
+void deslizar_derecha(InstanciaTablero instancia);
+void mover_derecha(InstanciaTablero instancia);
 
-InstanciaTablero deslizar_arriba(InstanciaTablero instancia);
-InstanciaTablero compactar_vertical(InstanciaTablero instancia);
-InstanciaTablero mover_arriba(InstanciaTablero instancia);
+void deslizar_arriba(InstanciaTablero instancia);
+void compactar_vertical(InstanciaTablero instancia);
+void mover_arriba(InstanciaTablero instancia);
 
-InstanciaTablero deslizar_abajo(InstanciaTablero instancia);
-InstanciaTablero mover_abajo(InstanciaTablero instancia);
+void deslizar_abajo(InstanciaTablero instancia);
+void mover_abajo(InstanciaTablero instancia);
