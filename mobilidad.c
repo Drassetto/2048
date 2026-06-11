@@ -19,14 +19,16 @@ for (int i = 0; i < instancia.dimension; i++) {
     }
     return instancia;
 }
-InstanciaTablero compactar_izquierda(InstanciaTablero instancia) {
+InstanciaTablero compactar(InstanciaTablero instancia) {
 for (int i = 0; i < instancia.dimension; i++) {
        
         for (int j = 0; j < instancia.dimension - 1; j++) {
             if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i][j + 1]) {
                 instancia.Tablero[i][j] *= 2;
                 instancia.Tablero[i][j + 1] = 0;
-            }
+            }else if(instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i][j - 1]){
+                instancia.Tablero[i][j] *= 2;
+                instancia.Tablero[i][j + 1] = 0;
         }
     }
     return instancia;
@@ -57,18 +59,7 @@ for (int i = 0; i < instancia.dimension; i++) {
     }
     return instancia;
 }
-InstanciaTablero compactar_derecha(InstanciaTablero instancia) {
-for (int i = 0; i < instancia.dimension; i++) {
-       
-        for (int j = instancia.dimension - 1; j > 0; j--) {
-            if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i][j - 1]) {
-                instancia.Tablero[i][j] *= 2;
-                instancia.Tablero[i][j - 1] = 0;
-            }
-        }
-    }
-    return instancia;
-}
+
 InstanciaTablero mover_derecha(InstanciaTablero instancia) {
     deslizar_derecha(instancia);
     compactar_derecha(instancia);
