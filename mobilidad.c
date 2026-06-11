@@ -28,7 +28,7 @@ for (int i = 0; i < instancia.dimension; i++) {
                 instancia.Tablero[i][j + 1] = 0;
             }else if(instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i][j - 1]){
                 instancia.Tablero[i][j] *= 2;
-                instancia.Tablero[i][j + 1] = 0;
+                instancia.Tablero[i][j - 1] = 0;
         }
     }
     return instancia;
@@ -84,16 +84,18 @@ for (int j = 0; j < instancia.dimension; j++) {
     }
     return instancia;
 }
-InstanciaTablero compactar_arriba(InstanciaTablero instancia) {
+InstanciaTablero compactar_vertical(InstanciaTablero instancia) {
 for (int j = 0; j < instancia.dimension; j++) {
        
         for (int i = 0; i < instancia.dimension - 1; i++) {
-            if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i + 1][j]) {
-                instancia.Tablero[i][j] *= 2;
-                instancia.Tablero[i + 1][j] = 0;
-            }
+                if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i + 1][j]) {
+                        instancia.Tablero[i][j] *= 2;
+                        instancia.Tablero[i + 1][j] = 0;
+                }else if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i - 1][j]){
+                        instancia.Tablero[i][j] *= 2;
+                        instancia.Tablero[i - 1][j] = 0;
+                }
         }
-    }
     return instancia;
 }
 InstanciaTablero mover_arriba(InstanciaTablero instancia) {
@@ -120,18 +122,7 @@ for (int j = 0; j < instancia.dimension; j++) {
     }
     return instancia;
 }
-InstanciaTablero compactar_abajo(InstanciaTablero instancia) {
-for (int j = 0; j < instancia.dimension; j++) {
-       
-        for (int i = instancia.dimension - 1; i > 0; i--) {
-            if (instancia.Tablero[i][j] != 0 && instancia.Tablero[i][j] == instancia.Tablero[i - 1][j]) {
-                instancia.Tablero[i][j] *= 2;
-                instancia.Tablero[i - 1][j] = 0;
-            }
-        }
-    }
-    return instancia;
-}
+
 InstanciaTablero mover_abajo(InstanciaTablero instancia) {
     deslizar_abajo(instancia);
     compactar_abajo(instancia);
