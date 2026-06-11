@@ -33,7 +33,7 @@ for (int i = 0; i < instancia.dimension; i++) {
 }
 void mover_izquierda(InstanciaTablero instancia) {
     deslizar_izquierda(instancia);
-    compactar_izquierda(instancia);
+    compactar_horiz(instancia);
     deslizar_izquierda(instancia);
 }
 
@@ -58,7 +58,7 @@ for (int i = 0; i < instancia.dimension; i++) {
 
 void mover_derecha(InstanciaTablero instancia) {
     deslizar_derecha(instancia);
-    compactar_derecha(instancia);
+    compactar_horiz(instancia);
     deslizar_derecha(instancia);
 }
 
@@ -93,7 +93,7 @@ for (int j = 0; j < instancia.dimension; j++) {
 }
 void mover_arriba(InstanciaTablero instancia) {
     deslizar_arriba(instancia);
-    compactar_arriba(instancia);
+    compactar_vertical(instancia);
     deslizar_arriba(instancia);
 }
 
@@ -116,7 +116,7 @@ for (int j = 0; j < instancia.dimension; j++) {
 
 void mover_abajo(InstanciaTablero instancia) {
     deslizar_abajo(instancia);
-    compactar_abajo(instancia);
+    compactar_vertical(instancia);
     deslizar_abajo(instancia);
 }
 
