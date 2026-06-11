@@ -19,7 +19,7 @@ for (int i = 0; i < instancia.dimension; i++) {
     }
     return instancia;
 }
-InstanciaTablero compactar(InstanciaTablero instancia) {
+InstanciaTablero compactar_horiz(InstanciaTablero instancia) {
 for (int i = 0; i < instancia.dimension; i++) {
        
         for (int j = 0; j < instancia.dimension - 1; j++) {
